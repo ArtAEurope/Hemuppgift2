@@ -4,21 +4,14 @@ import { Button, Text, TextInput, View } from "react-native";
 export default function Index() {
 
 const[counter, setCounter]=useState(0);
-const[mynumber, setMynumber]=useState("");
-const[errormessage, setErrormessage]=useState("");
 
 
+function add(){
+  setCounter(counter +1);
 
-function dosomeplus(){
+ {
 
-const innumb = Number(mynumber);
 
-if(isNaN(innumb)) {
-//Inte siffra
-setErrormessage("Du skrev fel!!!!")
-} else {
-  setErrormessage("");
-  setCounter(counter + innumb);
 
   if (counter > 10) {
     setCounter(0);
@@ -28,10 +21,10 @@ setErrormessage("Du skrev fel!!!!")
 }
 
 }
- function dosomeminus(){
+ function minus(){
   setCounter(counter -1);
 
-  if (counter <0){
+  if (counter ==0){
     setCounter(0);
   }
  }
@@ -45,37 +38,30 @@ setErrormessage("Du skrev fel!!!!")
       }}
     >
 
-<Text>{counter}</Text>
-
-{ errormessage !="" &&
-<Text style={{borderWidth:3, width: 200, height:80 }}>{errormessage}</Text>
-}
-
-
-<TextInput 
-onChangeText={ setMynumber} 
-value={ mynumber} 
-style={{  borderWidth:1, width: 100 }} 
-/>
-
+<Text style={{fontSize: 40}}>{counter}</Text>
 
   <Button 
-        onPress={ dosomeplus}
+        onPress={ add}
         title="Plus"
+        color={"green"}
+      
+  
       />
 
-{counter >= 0 &&
 <Button 
-        onPress={ dosomeminus}
+        onPress={ minus}
         title="Minus"
       />
-}
- 
+
+ <View style={{flex:1 }}>
+
+ </View>
+ {counter > 0 &&
 <Button 
         onPress={ ()=> {setCounter(0);}}
-        title="Reset"
+        title="RESET"
       />
-
+ }
     </View>
   );
 }
